@@ -31,15 +31,19 @@ Both the time complexity and space complexity would be approximately O(V^2) wher
 **Week 1 **
 
 Decide the project and the leading question we want to solve.
+
 **Week 2 **
 
 Collect all the possible or required data, the CSV file of the bus routes, and the station location coordination.
+
 **Week 3 **
 
 Finish the construction function of the graph, that is the map (midterm goal)
+
 **Week 4 **
 
 Finish the function of finding the shortest route.
+
 **Week 5 **
 
 Prepare for the presentation, and the slides.
