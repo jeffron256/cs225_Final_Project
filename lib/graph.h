@@ -22,7 +22,7 @@ class Graph
 {
     public:
 
-     Graph();
+     Graph() = default;
 
      vector<Vertex> getAdjacent(Vertex source) const;
 
@@ -34,15 +34,15 @@ class Graph
 
      bool edgeExists(Vertex source, Vertex dest) const;
 
-     Edge setBusLine(Vertex source, Vertex dest);
+     Edge setBusLine(Vertex source, Vertex dest, string busLine);
 
      string getBusLine(Vertex source, Vertex dest) const;
 
-     Edge setTimeInterval(Vertex source, Vertex dest);
+     Edge setTimeInterval(Vertex source, Vertex dest, int time);
 
      int getTimeInterval(Vertex source, Vertex dest) const;
 
-     void insert(Vertex v);
+     void insertVertex(Vertex v);
 
      Vertex removeVertex(Vertex v);
 
@@ -50,7 +50,19 @@ class Graph
 
      Edge removeEdge(Vertex source, Vertex dest);
 
-     
+     const static Vertex InvalidVertex;
+     const static Edge InvalidEdge;
+     const static int InvalidWeight;
+     const static string InvalidLabel;
+
+
     private:
+
      mutable unordered_map<Vertex, unordered_map<Vertex, Edge>> adj_;
+
+     bool assertVertexExists(Vertex v, string functionName) const;
+
+     bool assertEdgeExists(Vertex source, Vertex dest, string functionName) const;
+
+     void error(string message) const;
 };
