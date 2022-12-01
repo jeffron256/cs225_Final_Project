@@ -16,6 +16,34 @@ void mapMaker::clear()
     g_ = NULL;
 }
 
+vector<vector<string>> mapMaker::file_to_Vec(string filename)
+{
+    string file = file_to_string(filename);
+    vector<string> tokens;
+    vector<vector<string>> clean_courses;
+    stringstream ss(file);
+    string token;
+    while (getline(ss, token, '\n')) {
+        tokens.push_back(token);
+    }
+    for(size_t i =0; i<tokens.size();i++) {
+
+        vector<string> t2;
+        SplitString(tokens.at(i),',',t2);
+        for( size_t j =0; j < t2.size();j++) {
+            t2.at(j)= Trim(t2.at(j));
+        }
+
+        for(size_t i = 1; i < t2.size()-2;i=i+2) {
+            vector<string> b = {t2.at(0),t2.at(i), t2.at(i+1),t2.at(i+2)};
+            clean_courses.push_back(b);
+        }
+
+    }
+
+    return clean_courses; 
+}
+
 Graph* mapMaker::makeGraph(vector<vector<string>> stopinfo, map<string, vector<string>> &m)
 {
     Graph* g = new Graph();
@@ -41,7 +69,7 @@ Graph* mapMaker::makeGraph(vector<vector<string>> stopinfo, map<string, vector<s
             m[stopA] = v; 
         } else {
             vector<string> v = m[stopA];
-            if (std::find(v.begin(), v.end(), busline) == v.end()) {
+            if (find(v.begin(), v.end(), busline) == v.end()) {
                 v.push_back(busline);
                 m[stopA] = v;
             }
