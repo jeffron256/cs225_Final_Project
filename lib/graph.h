@@ -38,9 +38,9 @@ class Graph
 
      string getBusLine(Vertex source, Vertex dest) const;
 
-     Edge setTimeInterval(Vertex source, Vertex dest, int time);
+     Edge setTimeInterval(Vertex source, Vertex dest, double time);
 
-     int getTimeInterval(Vertex source, Vertex dest) const;
+     double getTimeInterval(Vertex source, Vertex dest) const;
 
      void insertVertex(Vertex v);
 
@@ -52,7 +52,7 @@ class Graph
 
      const static Vertex InvalidVertex;
      const static Edge InvalidEdge;
-     const static int InvalidWeight;
+     const static double InvalidWeight;
      const static string InvalidLabel;
 
 

@@ -117,6 +117,44 @@ depend:
 	cd /workspaces/RRNR_CS225_REP/cs225_Final_Project/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
+# Convenience name for target.
+lib/CMakeFiles/libs.dir/rule:
+	cd /workspaces/RRNR_CS225_REP/cs225_Final_Project/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lib/CMakeFiles/libs.dir/rule
+.PHONY : lib/CMakeFiles/libs.dir/rule
+
+# Convenience name for target.
+libs: lib/CMakeFiles/libs.dir/rule
+.PHONY : libs
+
+# fast build rule for target.
+libs/fast:
+	cd /workspaces/RRNR_CS225_REP/cs225_Final_Project/build && $(MAKE) $(MAKESILENT) -f lib/CMakeFiles/libs.dir/build.make lib/CMakeFiles/libs.dir/build
+.PHONY : libs/fast
+
+graph.o: graph.cpp.o
+.PHONY : graph.o
+
+# target to build an object file
+graph.cpp.o:
+	cd /workspaces/RRNR_CS225_REP/cs225_Final_Project/build && $(MAKE) $(MAKESILENT) -f lib/CMakeFiles/libs.dir/build.make lib/CMakeFiles/libs.dir/graph.cpp.o
+.PHONY : graph.cpp.o
+
+graph.i: graph.cpp.i
+.PHONY : graph.i
+
+# target to preprocess a source file
+graph.cpp.i:
+	cd /workspaces/RRNR_CS225_REP/cs225_Final_Project/build && $(MAKE) $(MAKESILENT) -f lib/CMakeFiles/libs.dir/build.make lib/CMakeFiles/libs.dir/graph.cpp.i
+.PHONY : graph.cpp.i
+
+graph.s: graph.cpp.s
+.PHONY : graph.s
+
+# target to generate assembly for a file
+graph.cpp.s:
+	cd /workspaces/RRNR_CS225_REP/cs225_Final_Project/build && $(MAKE) $(MAKESILENT) -f lib/CMakeFiles/libs.dir/build.make lib/CMakeFiles/libs.dir/graph.cpp.s
+.PHONY : graph.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -125,6 +163,10 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... libs"
+	@echo "... graph.o"
+	@echo "... graph.i"
+	@echo "... graph.s"
 .PHONY : help
 
 

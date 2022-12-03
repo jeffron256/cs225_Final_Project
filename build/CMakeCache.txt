@@ -132,7 +132,22 @@ CMAKE_PROJECT_DESCRIPTION:STATIC=
 CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=VERSION
+CMAKE_PROJECT_NAME:STATIC=cs_225_final_project
+
+//Value Computed by CMake
+CMAKE_PROJECT_VERSION:STATIC=2.6
+
+//Value Computed by CMake
+CMAKE_PROJECT_VERSION_MAJOR:STATIC=2
+
+//Value Computed by CMake
+CMAKE_PROJECT_VERSION_MINOR:STATIC=6
+
+//Value Computed by CMake
+CMAKE_PROJECT_VERSION_PATCH:STATIC=
+
+//Value Computed by CMake
+CMAKE_PROJECT_VERSION_TWEAK:STATIC=
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=/usr/bin/ranlib
@@ -196,17 +211,23 @@ CMAKE_STRIP:FILEPATH=/usr/bin/strip
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
+//The directory containing a CMake configuration file for Catch2.
+Catch2_DIR:PATH=/usr/lib/cmake/Catch2
+
 //Name of the computer/site where compile is being run
 SITE_NAME:STRING=520bbf8c2678
 
 //Value Computed by CMake
-VERSION_BINARY_DIR:STATIC=/workspaces/RRNR_CS225_REP/cs225_Final_Project/build
+cs_225_final_project_BINARY_DIR:STATIC=/workspaces/RRNR_CS225_REP/cs225_Final_Project/build
 
 //Value Computed by CMake
-VERSION_IS_TOP_LEVEL:STATIC=ON
+cs_225_final_project_IS_TOP_LEVEL:STATIC=ON
 
 //Value Computed by CMake
-VERSION_SOURCE_DIR:STATIC=/workspaces/RRNR_CS225_REP/cs225_Final_Project
+cs_225_final_project_SOURCE_DIR:STATIC=/workspaces/RRNR_CS225_REP/cs225_Final_Project
+
+//Dependencies for the target
+src_LIB_DEPENDS:STATIC=general;libs;
 
 
 ########################
@@ -350,4 +371,6 @@ CMAKE_STRIP-ADVANCED:INTERNAL=1
 CMAKE_UNAME:INTERNAL=/usr/bin/uname
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
+//Catch2 full path to CatchAddTests.cmake helper file
+_CATCH_DISCOVER_TESTS_SCRIPT:INTERNAL=/usr/lib/cmake/Catch2/CatchAddTests.cmake
 

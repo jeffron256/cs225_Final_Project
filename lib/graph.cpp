@@ -1,7 +1,7 @@
 #include "graph.h"
 
 const Vertex Graph::InvalidVertex = "INVALIDVERTEX";
-const int Graph::InvalidWeight = INT_MIN;
+const double Graph::InvalidWeight = INT_MIN;
 const string Graph:: InvalidLabel = "INVALIDLABEL";
 const Edge Graph::InvalidEdge = Edge(Graph::InvalidVertex, Graph::InvalidVertex, Graph::InvalidLabel, Graph::InvalidWeight);
 
@@ -75,7 +75,7 @@ string Graph::getBusLine(Vertex source, Vertex dest) const
     return adj_[source][dest].getLineName();
 }
 
-Edge Graph::setTimeInterval(Vertex source, Vertex dest, int time)
+Edge Graph::setTimeInterval(Vertex source, Vertex dest, double time)
 {
     if (assertEdgeExists(source, dest, __func__) == false)
         return InvalidEdge;
@@ -88,7 +88,7 @@ Edge Graph::setTimeInterval(Vertex source, Vertex dest, int time)
     return new_edge;
 }
 
-int Graph::getTimeInterval(Vertex source, Vertex dest) const
+double Graph::getTimeInterval(Vertex source, Vertex dest) const
 {
     if(assertEdgeExists(source, dest, __func__) == false)
         return InvalidWeight;
