@@ -1,4 +1,5 @@
 #include "mapMaker.h"
+#include "../lib/graph.h"
 
 mapMaker::mapMaker(vector<vector<string>> stopinfo, map<string, vector<string>> &m)
 {
@@ -14,6 +15,10 @@ void mapMaker::clear()
 {
     delete g_;
     g_ = NULL;
+}
+
+void mapMaker::setGraph(Graph* g) {
+    g_ = g;
 }
 
 vector<vector<string>> mapMaker::file_to_Vec(string filename)
@@ -34,8 +39,8 @@ vector<vector<string>> mapMaker::file_to_Vec(string filename)
             t2.at(j)= Trim(t2.at(j));
         }
 
-        for(size_t i = 1; i < t2.size()-2;i=i+2) {
-            vector<string> b = {t2.at(0),t2.at(i), t2.at(i+1),t2.at(i+2)};
+        for(size_t j = 1; j < t2.size()-2;j=j+2) {
+            vector<string> b = {t2.at(0),t2.at(j), t2.at(j+1),t2.at(j+2)};
             clean_courses.push_back(b);
         }
 
@@ -50,7 +55,7 @@ Graph* mapMaker::makeGraph(vector<vector<string>> stopinfo, map<string, vector<s
     for (auto a : stopinfo) {
         string busline = a[0];
         Vertex stopA = a[1];
-        int time = stoi(a[2]);
+        double time = stoi(a[2]);
         Vertex stopB = a[3];
         if (!g->vertexExists(stopA)) {
             g->insertVertex(stopA);

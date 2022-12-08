@@ -1,4 +1,4 @@
-# Install script for directory: /workspaces/RRNR_CS225_REP/cs225_Final_Project/lib
+# Install script for directory: /workspaces/cs225/cs225_Final_Project/lib
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
