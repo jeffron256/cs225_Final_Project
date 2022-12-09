@@ -2,7 +2,7 @@
 #include "../lib/graph.h"
 
 std::string trim2(std::string InitialStationname) {
-    size_t firstP= InitialStationname.find('(');
+    size_t firstP= InitialStationname.find('(') - 1;
     size_t secondP= InitialStationname.find(')');
     return InitialStationname.erase(firstP,secondP);
 }
@@ -55,6 +55,7 @@ Graph makeGraph(vector<vector<string>> stopinfo, map<string, vector<string>> &m)
         if (!g.edgeExists(stopA, stopB)) {
             g.insertEdge(stopA, stopB);
             g.setTimeInterval(stopA, stopB, time);
+            g.setBusLine(stopA, stopB, busline);
         }
         //store multiple busline in a vertex
         // m : map each bus stop to a vector containing all buslines pass through it

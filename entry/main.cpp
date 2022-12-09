@@ -20,22 +20,22 @@ int main()
     Graph g = makeGraph(tmp1, m);
     Graph g2 = makeGraph(tmp2, m2);
 
+    /*cout << "BC=" << g2.getTimeInterval("B","C") << ", ";
     cout << "BC=" << g2.getTimeInterval("B","C") << ", ";
     cout << "BC=" << g2.getTimeInterval("B","C") << ", ";
     cout << "BC=" << g2.getTimeInterval("B","C") << ", ";
-    cout << "BC=" << g2.getTimeInterval("B","C") << ", ";
-    cout << "BC=" << g2.getTimeInterval("B","C") << ", ";
+    cout << "BC=" << g2.getTimeInterval("B","C") << ", "; */
 
-    vector<Vertex> actual1 = BFS(g2, "Illini Union", "Goodwin & Nevada");
-    vector<Vertex> actual2 = dijkstra(g2, "Illini Union", "Goodwin & Nevada");
+    vector<Vertex> actual1 = BFS(g2, "Transit Plaza", "Penn & Vine");
+    vector<Vertex> actual2 = dijkstra(g2, "Transit Plaza", "Penn & Vine");
     cout << "BFS: "<< endl;
     for (auto v: actual1) {
-        cout << v << "\t";
+        cout << v << ", ";
     }
     cout << endl;
     cout << "dijkstra:"<< endl;
     for (auto v: actual2) {
-        cout << v << "\t";
+        cout << v << ", ";
     }
     cout << endl;
     
