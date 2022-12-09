@@ -1,12 +1,13 @@
 #include "mapMaker.h"
 #include "../lib/graph.h"
 
-mapMaker::mapMaker(vector<vector<string>> stopinfo, map<string, vector<string>> &m)
-{
-    makeGraph(stopinfo, m);
+std::string trim2(std::string InitialStationname) {
+    size_t firstP= InitialStationname.find('(');
+    size_t secondP= InitialStationname.find(')');
+    return InitialStationname.erase(firstP,secondP);
 }
 
-vector<vector<string>> mapMaker::file_to_Vec(string filename)
+vector<vector<string>> file_to_Vec(string filename)
 {
     string file = file_to_string(filename);
     vector<string> tokens;
@@ -20,8 +21,11 @@ vector<vector<string>> mapMaker::file_to_Vec(string filename)
 
         vector<string> t2;
         SplitString(tokens.at(i),',',t2);
-        for( size_t j =0; j < t2.size();j++) {
-            t2.at(j)= Trim(t2.at(j));
+        for( size_t j = 0; j < t2.size();j++) {
+            t2.at(j) = Trim(t2.at(j));
+            if (t2.at(j).find('(') != std::string::npos) {
+                t2.at(j)=trim2(t2.at(j));
+            }
         }
 
         for(size_t j = 1; j < t2.size()-2;j=j+2) {
@@ -34,7 +38,7 @@ vector<vector<string>> mapMaker::file_to_Vec(string filename)
     return clean_courses; 
 }
 
-Graph mapMaker::makeGraph(vector<vector<string>> stopinfo, map<string, vector<string>> &m)
+Graph makeGraph(vector<vector<string>> stopinfo, map<string, vector<string>> &m)
 {
     Graph g;
     for (auto a : stopinfo) {

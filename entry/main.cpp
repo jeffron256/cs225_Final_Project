@@ -8,19 +8,32 @@ using std::endl;
 
 int main()
 {
-    mapMaker UIUCbus;
-    vector<vector<string>> tmp = UIUCbus.file_to_Vec("../data/test_make_graph_small.csv");
+    vector<vector<string>> tmp = file_to_Vec("../data/test_make_graph_small.csv");
     map<string, vector<string>> m1;
-    Graph g1 = UIUCbus.makeGraph(tmp, m1);
+    Graph g1 = makeGraph(tmp, m1);
 
-    cout << "test dijkstra2:"<< endl;
-    mapMaker U;
-    vector<vector<string>> tmp1 = U.file_to_Vec("../data/dijktra_test.csv");
+    //cout << "test dijkstra2:"<< endl;
+    vector<vector<string>> tmp1 = file_to_Vec("../data/dijktra_test.csv");
+    vector<vector<string>> tmp2 = file_to_Vec("../data/bus_stop_info_weekday.csv");
     map<string, vector<string>> m;
-    Graph g = U.makeGraph(tmp1, m);
-    vector<Vertex> actual2 = BFS(g, "A", "H");
-    vector<Vertex> expected2 = vector<Vertex> {"A","F","E","H"};
-    cout << "2: "<< endl;
+    map<string, vector<string>> m2;
+    Graph g = makeGraph(tmp1, m);
+    Graph g2 = makeGraph(tmp2, m2);
+
+    cout << "BC=" << g2.getTimeInterval("B","C") << ", ";
+    cout << "BC=" << g2.getTimeInterval("B","C") << ", ";
+    cout << "BC=" << g2.getTimeInterval("B","C") << ", ";
+    cout << "BC=" << g2.getTimeInterval("B","C") << ", ";
+    cout << "BC=" << g2.getTimeInterval("B","C") << ", ";
+
+    vector<Vertex> actual1 = BFS(g2, "Illini Union", "Goodwin & Nevada");
+    vector<Vertex> actual2 = dijkstra(g2, "Illini Union", "Goodwin & Nevada");
+    cout << "BFS: "<< endl;
+    for (auto v: actual1) {
+        cout << v << "\t";
+    }
+    cout << endl;
+    cout << "dijkstra:"<< endl;
     for (auto v: actual2) {
         cout << v << "\t";
     }

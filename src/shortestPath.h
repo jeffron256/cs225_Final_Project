@@ -17,3 +17,5 @@ using std::endl;
 std::vector<Vertex> BFS(const Graph& g, Vertex s, Vertex e);
 
 std::vector<Vertex> dijkstra(const Graph& g, Vertex s, Vertex e);
+
+std::map<Vertex,double> Betw(Graph g);

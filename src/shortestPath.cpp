@@ -104,3 +104,26 @@ std::vector<Vertex> dijkstra(const Graph& g, Vertex s, Vertex e) {
 
     return output;
 }
+
+std::map<Vertex,double> Betw(Graph g) {
+    std::vector<Vertex> stations = g.getVertices();
+    map<Vertex,double> certa;
+
+    for(size_t i = 0; i < stations.size();i++) {
+        certa.insert(std::pair<Vertex,double>(stations.at(i),0));
+    }
+
+    for(size_t i = 0; i< stations.size();i++) {
+        for(size_t j =i+1; j< stations.size();j++) {
+            std::vector<Vertex> rout = dijkstra(g,stations.at(i),stations.at(j));
+            for(size_t z=0; z<rout.size();z++) {
+                std::cout<<rout.at(z);
+                auto it = certa.find(rout.at(z)); 
+                if (it != certa.end())
+                it->second = it->second + 1;
+            }
+            std::cout<<endl;
+        }
+    }
+    return certa;
+}

@@ -10,14 +10,8 @@ using std::vector;
 using std::map;
 using std::stringstream;
 
-class mapMaker
-{
-    public:
-     mapMaker() = default;
-     
-     mapMaker(vector<vector<string>> stopinfo, map<string, vector<string>> &m);
+std::string trim2(std::string InitialStationname); 
 
-     vector<vector<string>> file_to_Vec(string filename);
+vector<vector<string>> file_to_Vec(string filename);
 
-     Graph makeGraph(vector<vector<string>> stopinfo, map<string, vector<string>> &m);
-};
+Graph makeGraph(vector<vector<string>> stopinfo, map<string, vector<string>> &m);
