@@ -3,22 +3,7 @@
 
 mapMaker::mapMaker(vector<vector<string>> stopinfo, map<string, vector<string>> &m)
 {
-    g_ = makeGraph(stopinfo, m);
-}
-
-mapMaker::~mapMaker()
-{
-    clear();
-}
-
-void mapMaker::clear()
-{
-    delete g_;
-    g_ = NULL;
-}
-
-void mapMaker::setGraph(Graph* g) {
-    g_ = g;
+    makeGraph(stopinfo, m);
 }
 
 vector<vector<string>> mapMaker::file_to_Vec(string filename)
@@ -49,23 +34,23 @@ vector<vector<string>> mapMaker::file_to_Vec(string filename)
     return clean_courses; 
 }
 
-Graph* mapMaker::makeGraph(vector<vector<string>> stopinfo, map<string, vector<string>> &m)
+Graph mapMaker::makeGraph(vector<vector<string>> stopinfo, map<string, vector<string>> &m)
 {
-    Graph* g = new Graph();
+    Graph g;
     for (auto a : stopinfo) {
         string busline = a[0];
         Vertex stopA = a[1];
         double time = stoi(a[2]);
         Vertex stopB = a[3];
-        if (!g->vertexExists(stopA)) {
-            g->insertVertex(stopA);
+        if (!g.vertexExists(stopA)) {
+            g.insertVertex(stopA);
         }
-        if (!g->vertexExists(stopB)) {
-            g->insertVertex(stopB);
+        if (!g.vertexExists(stopB)) {
+            g.insertVertex(stopB);
         }
-        if (!g->edgeExists(stopA, stopB)) {
-            g->insertEdge(stopA, stopB);
-            g->setTimeInterval(stopA, stopB, time);
+        if (!g.edgeExists(stopA, stopB)) {
+            g.insertEdge(stopA, stopB);
+            g.setTimeInterval(stopA, stopB, time);
         }
         //store multiple busline in a vertex
         // m : map each bus stop to a vector containing all buslines pass through it

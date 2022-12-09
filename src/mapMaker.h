@@ -17,16 +17,7 @@ class mapMaker
      
      mapMaker(vector<vector<string>> stopinfo, map<string, vector<string>> &m);
 
-     ~mapMaker();
-
-     void setGraph(Graph* g);
-
      vector<vector<string>> file_to_Vec(string filename);
 
-     Graph* makeGraph(vector<vector<string>> stopinfo, map<string, vector<string>> &m);
-
-    private:
-     Graph* g_;
-
-     void clear();
+     Graph makeGraph(vector<vector<string>> stopinfo, map<string, vector<string>> &m);
 };
