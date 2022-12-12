@@ -16,26 +16,26 @@ class Edge {
       * Default Constructor 
       */
      Edge()
-        : source(""), dest(""), busLine(""), time(-1)
+        : source(""), dest(""), busLine(""), time(-1.0)
      {
      }
 
      Edge(Vertex u, Vertex v)
-        : source(u), dest(v), busLine(""), time(-1)
+        : source(u), dest(v), busLine(""), time(-1.0)
      {
      }
 
      Edge(Vertex u, Vertex v, string busLine)
-        : source(u), dest(v), busLine(busLine), time(-1)
+        : source(u), dest(v), busLine(busLine), time(-1.0)
      {
      }
 
-     Edge(Vertex u, Vertex v, string busLine, int time)
+     Edge(Vertex u, Vertex v, string busLine, double time)
         : source(u), dest(v), busLine(busLine), time(time)
      {
      }
 
-     int getTimeInterval() const 
+     double getTimeInterval() const 
      {
         return this->time;
      }
@@ -53,5 +53,5 @@ class Edge {
     
     private:
      string busLine;
-     int time;
+     double time;
 };

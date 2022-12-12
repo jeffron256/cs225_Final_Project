@@ -39,3 +39,40 @@ int SplitString(const std::string & str1, char sep, std::vector<std::string> &fi
     fields.push_back(str);
     return fields.size();
 }
+
+bool cmp(std::pair<std::string, int>& a, std::pair<std::string, int>& b) {
+    return a.second > b.second;
+}
+
+std::string type_name(const Graph& g, std::array<char, 30>& input) {
+    std::vector<Vertex> vertices = g.getVertices();
+    std::string output;
+
+    bool flag_1 = false;
+    while (!flag_1) {
+        if (std::fgets(input.data(), input.size(), stdin) != NULL) {
+            for (auto i : vertices) {
+                auto tmp = i + '\n';
+                if (tmp == input.data()) {
+                    flag_1 = true;
+                    output = i;
+                    break;
+                }
+            }
+
+            if (flag_1) {
+                break;
+            } else {
+                printf("Sorry we did not find your entered stop in our database. Please re-enter the stop name\n");
+            }
+
+        } else if (std::feof(stdin)) {
+            std::puts("Your Bus stop name is too long!\n");
+        } else if (std::ferror(stdin)) {
+            std::puts("IO error\n");
+        } else {
+            std::puts("Unknown error\n");
+        }
+    }
+    return output;
+}

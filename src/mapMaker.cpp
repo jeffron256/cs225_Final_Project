@@ -1,35 +1,41 @@
 #include "mapMaker.h"
 #include "../lib/graph.h"
 
-std::string trim2(std::string InitialStationname) {
-    size_t firstP= InitialStationname.find('(') - 1;
-    size_t secondP= InitialStationname.find(')');
-    return InitialStationname.erase(firstP,secondP);
+Graph init(std::string filename) {
+    std::vector<std::vector<std::string>> v = file_to_Vec(filename);
+    std::map<string, vector<string>> m;
+    Graph output = makeGraph(v, m);
+    return output;
 }
 
-vector<vector<string>> file_to_Vec(string filename)
+std::string trim_Brackets(std::string s) {
+    size_t firstP = s.find('(') - 1;
+    size_t secondP = s.find(')');
+    return s.erase(firstP, secondP);
+}
+
+std::vector<std::vector<std::string>> file_to_Vec(std::string filename)
 {
-    string file = file_to_string(filename);
-    vector<string> tokens;
-    vector<vector<string>> clean_courses;
-    stringstream ss(file);
-    string token;
+    std::string file = file_to_string(filename);
+    std::vector<string> tokens;
+    std::vector<std::vector<std::string>> clean_courses;
+    std::stringstream ss(file);
+    std::string token;
     while (getline(ss, token, '\n')) {
         tokens.push_back(token);
     }
-    for(size_t i =0; i<tokens.size();i++) {
-
-        vector<string> t2;
+    for(size_t i = 0; i < tokens.size(); i++) {
+        std::vector<string> t2;
         SplitString(tokens.at(i),',',t2);
-        for( size_t j = 0; j < t2.size();j++) {
+        for(size_t j = 0; j < t2.size(); j++) {
             t2.at(j) = Trim(t2.at(j));
             if (t2.at(j).find('(') != std::string::npos) {
-                t2.at(j)=trim2(t2.at(j));
+                t2.at(j) = trim_Brackets(t2.at(j));
             }
         }
 
-        for(size_t j = 1; j < t2.size()-2;j=j+2) {
-            vector<string> b = {t2.at(0),t2.at(j), t2.at(j+1),t2.at(j+2)};
+        for(size_t j = 1; j < t2.size() - 2; j = j + 2) {
+            std::vector<std::string> b = {t2.at(0),t2.at(j), t2.at(j+1),t2.at(j+2)};
             clean_courses.push_back(b);
         }
 
@@ -38,13 +44,13 @@ vector<vector<string>> file_to_Vec(string filename)
     return clean_courses; 
 }
 
-Graph makeGraph(vector<vector<string>> stopinfo, map<string, vector<string>> &m)
+Graph makeGraph(std::vector<std::vector<std::string>> stopinfo, std::map<string, vector<string>>& m)
 {
     Graph g;
     for (auto a : stopinfo) {
-        string busline = a[0];
+        std::string busline = a[0];
         Vertex stopA = a[1];
-        double time = stoi(a[2]);
+        double time = stod(a[2]);
         Vertex stopB = a[3];
         if (!g.vertexExists(stopA)) {
             g.insertVertex(stopA);
@@ -60,10 +66,10 @@ Graph makeGraph(vector<vector<string>> stopinfo, map<string, vector<string>> &m)
         //store multiple busline in a vertex
         // m : map each bus stop to a vector containing all buslines pass through it
         if (m.find(stopA) == m.end()) {
-            vector<string> v {busline};
+            std::vector<std::string> v {busline};
             m[stopA] = v; 
         } else {
-            vector<string> v = m[stopA];
+            std::vector<std::string> v = m[stopA];
             if (find(v.begin(), v.end(), busline) == v.end()) {
                 v.push_back(busline);
                 m[stopA] = v;

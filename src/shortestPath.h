@@ -18,4 +18,6 @@ std::vector<Vertex> BFS(const Graph& g, Vertex s, Vertex e);
 
 std::vector<Vertex> dijkstra(const Graph& g, Vertex s, Vertex e);
 
-std::map<Vertex,double> Betw(Graph g);
+std::map<Vertex,int> Betw(const Graph& g);
+
+double time_needed(const Graph& g, const std::vector<Vertex>& v);

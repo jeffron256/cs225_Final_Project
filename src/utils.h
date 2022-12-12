@@ -7,6 +7,9 @@
 #include <cassert>
 #include <fstream>
 
+#include "../src/mapMaker.h"
+#include "../src/shortestPath.h"
+
 /**
  * Takes a filename and reads in all the text from the file
  * Newline characters are also just characters in ASCII
@@ -41,3 +44,7 @@ std::string Trim(const std::string & str);
  * @return The number of substrings created
  */
 int SplitString(const std::string & str1, char sep, std::vector<std::string> &fields);
+
+bool cmp(std::pair<std::string, int>& a, std::pair<std::string, int>& b);
+
+std::string type_name(const Graph& g, std::array<char, 30>& input);

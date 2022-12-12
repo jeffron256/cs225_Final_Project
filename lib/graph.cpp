@@ -145,7 +145,7 @@ bool Graph::insertEdge(Vertex source, Vertex dest)
 
         //source vertex exists
     adj_[source][dest] = Edge(source, dest);
-    if(adj_.find(dest)== adj_.end())
+    if(adj_.find(dest) == adj_.end())
     {
         adj_[dest] = unordered_map<Vertex, Edge>();
     }

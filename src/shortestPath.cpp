@@ -1,5 +1,14 @@
 #include "shortestPath.h"
 
+double time_needed(const Graph& g, const std::vector<Vertex>& v) {
+    double time = 0;
+    for (size_t i = 1; i < v.size(); i++) {
+        Vertex tmp = v[i - 1];
+        time += g.getTimeInterval(tmp, v[i]);
+    }
+    return time;
+}
+
 std::vector<Vertex> BFS(const Graph& g, Vertex s, Vertex e) {
     std::vector<Vertex> output;
     std::queue<Vertex> q;
@@ -105,24 +114,25 @@ std::vector<Vertex> dijkstra(const Graph& g, Vertex s, Vertex e) {
     return output;
 }
 
-std::map<Vertex,double> Betw(Graph g) {
+std::map<Vertex,int> Betw(const Graph& g) {
+    //get list of the stations 
     std::vector<Vertex> stations = g.getVertices();
-    map<Vertex,double> certa;
-
+    map<Vertex,int>certa;
+    //put them into the map to record the time expereicned
     for(size_t i = 0; i < stations.size();i++) {
-        certa.insert(std::pair<Vertex,double>(stations.at(i),0));
+        certa.insert(std::pair<Vertex,int>(stations.at(i),0));
     }
-
+    //add all thepathss into the map
     for(size_t i = 0; i< stations.size();i++) {
         for(size_t j =i+1; j< stations.size();j++) {
             std::vector<Vertex> rout = dijkstra(g,stations.at(i),stations.at(j));
             for(size_t z=0; z<rout.size();z++) {
-                std::cout<<rout.at(z);
+
                 auto it = certa.find(rout.at(z)); 
                 if (it != certa.end())
-                it->second = it->second + 1;
+                it->second = it->second+1;
             }
-            std::cout<<endl;
+
         }
     }
     return certa;
