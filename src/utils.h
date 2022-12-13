@@ -11,6 +11,14 @@
 #include "../src/shortestPath.h"
 
 /**
+ * Imported class and implementations from MP_schedule, altered part of its methods
+ * Added several new functions made by ourselves
+ * 
+ * Thanks the string algorithem this lab offered
+ * Dec/12/2022 BY group SMARTPOINTER
+*/
+
+/**
  * Takes a filename and reads in all the text from the file
  * Newline characters are also just characters in ASCII
  * 76-98         Z
@@ -45,6 +53,20 @@ std::string Trim(const std::string & str);
  */
 int SplitString(const std::string & str1, char sep, std::vector<std::string> &fields);
 
+/**
+ * Comparing the given two pair, which is similar to the overload of opeartor<
+ * 
+ * @param a The first input
+ * @param b The second input
+ * @return a < b
+*/
 bool cmp(std::pair<std::string, int>& a, std::pair<std::string, int>& b);
 
+/**
+ *  Accounting for user to type their current bus stop and destination stop
+ * 
+ * @param g The input graph which account for determing whether user typed a correct BUS stop name
+ * @param input A array with max length of 30, ready for user to input their stop name
+ * @return A string typed by user
+*/
 std::string type_name(const Graph& g, std::array<char, 30>& input);

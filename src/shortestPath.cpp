@@ -53,7 +53,6 @@ std::vector<Vertex> dijkstra(const Graph& g, Vertex s, Vertex e) {
 
     priority_queue<pair<float, string>, vector<pair<float,string>>, std::greater<pair<float,string>>> q; //min time
     
-
     for (Vertex v : g.getVertices()) {
         t[v] = DBL_MAX;
         p[v] = "";
@@ -61,41 +60,30 @@ std::vector<Vertex> dijkstra(const Graph& g, Vertex s, Vertex e) {
     }
     t[s] = 0;
     q.push(pair<float, Vertex> {t[s], s});
-    
-    // vector<Vertex> T; //"labeled set" 
-    
 
     while (!q.empty()) {
         
         Vertex u = q.top().second;
         if (q.top().first != t[u]) {
-            // cout << "    orignal" << q.top().first <<endl;
-            // cout << "updated "<< endl;
             q.pop();
             q.push(pair<float, Vertex> {t[u], u});
             continue;
         }
 
-        // cout << "---------------------vertex " << u << " with time " << q.top().first << endl;
         q.pop();
-        // T.push_back(u);
-        
+
         visited[u] = true;
 
-        
-        // cout << "inside neighbors loop: " << endl;
         for (Vertex v : g.getAdjacent(u)) {
-            // cout << "v: " << v<< endl;
+
             if (!visited[v] && (g.getTimeInterval(u,v) + t[u]) < t[v]) {
                 t[v] = g.getTimeInterval(u,v) + t[u];
-                // cout << "newtime: " << t[v] << endl;
                 q.push(pair<float, Vertex> {t[v], v});  //update time for v
                 p[v] = u;
 
             }
         }
 
-        // cout << "------------------------" << endl;
     }
 
     vector<Vertex> output;
@@ -105,12 +93,7 @@ std::vector<Vertex> dijkstra(const Graph& g, Vertex s, Vertex e) {
         v = p[v];
     }
     std::reverse(output.begin(), output.end());
-    /* cout  << "here----" << endl;
-    for (auto v : g.getVertices()) {
-        cout << "(" << v << ", " << p[v] << ", " << t[v] << ")\t";
-    }
-    cout << endl; */
-
+   
     return output;
 }
 
@@ -126,14 +109,57 @@ std::map<Vertex,int> Betw(const Graph& g) {
     for(size_t i = 0; i< stations.size();i++) {
         for(size_t j =i+1; j< stations.size();j++) {
             std::vector<Vertex> rout = dijkstra(g,stations.at(i),stations.at(j));
-            for(size_t z=0; z<rout.size();z++) {
-
+            for(size_t z = 0; z < rout.size(); z++) {
                 auto it = certa.find(rout.at(z)); 
                 if (it != certa.end())
-                it->second = it->second+1;
+                it->second = it->second + 1;
             }
 
         }
     }
     return certa;
+}
+
+void print(const std::vector<Vertex>& v, std::map<string, vector<string>>& m) {
+    cout << "    ";
+    for (auto i : v) {
+        if (i == v.back()) {
+            cout << i;
+            cout << i << " (";
+            for (auto l: m[i]) {
+                if (l == m[i].back()) {
+                    cout << l;
+                } else {
+                    cout << l << "/";
+                }
+            }
+            cout << ")"<< endl;
+        } else {
+            cout << i << " (";
+            for (auto l: m[i]) {
+                if (l == m[i].back()) {
+                    cout << l;
+                } else {
+                    cout << l << "/";
+                }
+            }
+            cout << ")" << endl;
+            cout << " -> ";
+        }
+    }
+}
+
+void print(const Graph& g) {
+    auto m4 = Betw(g);
+    vector<pair<string, int>> A;
+
+    for (auto it : m4) {
+        A.push_back(it);
+    }
+
+    sort(A.begin(), A.end(), cmp);
+
+    for (int i = 0; i < 5; i++) {
+        cout << A[i].first << " " << A[i].second << endl;
+    }
 }

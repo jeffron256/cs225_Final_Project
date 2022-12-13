@@ -48,26 +48,26 @@ std::string type_name(const Graph& g, std::array<char, 30>& input) {
     std::vector<Vertex> vertices = g.getVertices();
     std::string output;
 
-    bool flag_1 = false;
-    while (!flag_1) {
+    bool flag = false;
+    while (!flag) {
         if (std::fgets(input.data(), input.size(), stdin) != NULL) {
             for (auto i : vertices) {
                 auto tmp = i + '\n';
                 if (tmp == input.data()) {
-                    flag_1 = true;
+                    flag = true;
                     output = i;
                     break;
                 }
             }
 
-            if (flag_1) {
+            if (flag) {
                 break;
             } else {
-                printf("Sorry we did not find your entered stop in our database. Please re-enter the stop name\n");
+                printf("Sorry we did not find your entered stop in our database. Please re-enter the stop name (try capitalizing first letter or delete words inside parenthesis)\n");
             }
 
         } else if (std::feof(stdin)) {
-            std::puts("Your Bus stop name is too long!\n");
+            std::puts("The Bus stop name you typed is too long! (Eliminating it within 30 letters)\n");
         } else if (std::ferror(stdin)) {
             std::puts("IO error\n");
         } else {

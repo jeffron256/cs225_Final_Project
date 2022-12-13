@@ -1,13 +1,18 @@
 #pragma once
 
 #include <list>
+#include <unordered_map>
 #include <utility>
 #include <algorithm>
 #include <string>
-#include <vector>
+#include <cstdlib>
 #include <climits>
+#include <fstream>
 #include <iostream>
-#include <unordered_map>
+#include <iomanip>
+#include <set>
+#include <sstream>
+#include <vector>
 
 #include "edge.h"
 
@@ -16,7 +21,15 @@ using std::vector;
 using std::pair;
 using std::to_string;
 using std::unordered_map;
+using std::cout;
+using std::endl;
 
+/**
+ * Imported class and implementations from Lab_ml, altered part of its methods
+ * 
+ * Thanks the data structure this lab offered
+ * Dec/12/2022 BY group SMARTPOINTER
+*/
 
 class Graph
 {
@@ -49,6 +62,8 @@ class Graph
      bool insertEdge(Vertex source, Vertex dest);
 
      Edge removeEdge(Vertex source, Vertex dest);
+
+     void print() const;
 
      const static Vertex InvalidVertex;
      const static Edge InvalidEdge;

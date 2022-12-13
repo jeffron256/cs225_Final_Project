@@ -8,6 +8,12 @@ Graph init(std::string filename) {
     return output;
 }
 
+Graph init(std::string filename, std::map<string, vector<string>> &m) {
+    std::vector<std::vector<std::string>> v = file_to_Vec(filename);
+    Graph output = makeGraph(v, m);
+    return output;
+}
+
 std::string trim_Brackets(std::string s) {
     size_t firstP = s.find('(') - 1;
     size_t secondP = s.find(')');

@@ -203,4 +203,24 @@ void Graph::error(string message) const
     std::cerr << "\033[1;31m[Graph Error]\033[0m " + message << std::endl;
 }
 
+void Graph::print() const
+{
+    for (auto it = adj_.begin(); it != adj_.end(); ++it) 
+    {
+        cout << it->first << endl;
+        for (auto it2 = it->second.begin(); it2 != it->second.end(); ++it2) 
+        {
+            std::stringstream ss;
+            ss << it2->first; 
+            string vertexColumn = "    => " + ss.str();
+            vertexColumn += " " ;
+            cout << std::left << std::setw(26) << vertexColumn;
+            //string edgeColumn = "Bus Stop name = \"" + it2->second.getLineName()+ "\"";
+            //cout << std::left << std::setw(26) << edgeColumn;
+            cout << "Time taken = " << it2->second.getTimeInterval();
+            cout << endl;
+        }
+        cout << endl;
+    }
+}
 

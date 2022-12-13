@@ -7,6 +7,13 @@ using std::string;
 
 typedef string Vertex;
 
+/**
+ * Imported class and implementations from Lab_ml, altered part of its methods
+ * 
+ * Thanks the data structure this lab offered
+ * Dec/12/2022 BY group SMARTPOINTER
+*/
+
 class Edge {
     public:
      Vertex source;
