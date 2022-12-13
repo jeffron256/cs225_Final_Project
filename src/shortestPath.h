@@ -62,8 +62,9 @@ double time_needed(const Graph& g, const std::vector<Vertex>& v);
 void print(const std::vector<Vertex>& v, std::map<std::string, std::vector<std::string>>& m);
 
 /**
- * Prints the top 5 stops with most visited times, that is, with hustle and bustle
+ *  The most visted bus stop among the shortest path, that is, with hustle and bustle
  * 
  * @param g g The input graph which will generate the final result
+ * @param v The shortest path
 */
-void print(const Graph& g);
+void print(const Graph& g, const std::vector<std::string>& v);

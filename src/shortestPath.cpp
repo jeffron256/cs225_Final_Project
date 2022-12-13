@@ -149,17 +149,17 @@ void print(const std::vector<Vertex>& v, std::map<string, vector<string>>& m) {
     }
 }
 
-void print(const Graph& g) {
+void print(const Graph& g, const std::vector<std::string>& v) {
     auto m4 = Betw(g);
     vector<pair<string, int>> A;
 
-    for (auto it : m4) {
-        A.push_back(it);
+    for (auto it : v) {
+        if (m4.find(it) != m4.end()) {
+            A.push_back(std::make_pair(it, m4[it]));
+        }
     }
 
     sort(A.begin(), A.end(), cmp);
 
-    for (int i = 0; i < 5; i++) {
-        cout << A[i].first << " " << A[i].second << endl;
-    }
+    cout << A[0].first << " " << A[0].second << endl;
 }
